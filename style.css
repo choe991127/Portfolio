@@ -7,6 +7,7 @@
     --color-dark-white: #bdbdbd;
     --color-light-purple:#DBADF5;
     --color-purple:#D792DE;
+    --color-verylight-purple:#D5B6E8;
     --color-dark-purple:#AE92DE;
     --color-purple-blue:#ADA5FA;
     --color-purple-pink:#FAA5DF;
@@ -46,6 +47,13 @@
     list-style: none;
     padding-left:0;
   }
+
+  button{
+    background-color: transparent;
+    cursor:pointer;
+    border:none;
+    outline: none;
+  }
   
   /* Typography */
   
@@ -81,7 +89,7 @@
   #navbar{
     display:flex;
     justify-content: space-between;
-    background-color: var(--color-light-purple);
+    background-color:var(--color-verylight-purple);
     align-items: center;
     padding:16px;
   }
@@ -100,14 +108,42 @@
     cursor:pointer;
     border-radius:var(--size-border-radius);
   }
-  /* active상태인 메뉴 하얀색 테두리 만들기 */
+  
   .navbar__menu__item.active{
     border:1px solid var(--color-white);
     
   }
-  /* 마우스가 위에 올라간다면?:hover */
+  
   .navbar__menu__item:hover{
     background-color:var(--color-dark-purple);
     border-radius:4px;
   }
   
+/* Home */
+#home{
+  background:url('images/home-background.png') center/cover no-repeat;
+  padding:40px;
+  text-align:center;
+ 
+}
+
+.home__avatar{
+  width:250px;
+  height:250px;
+  border-radius:50%;
+  border: 2px solid var(--color-light-white); 
+}
+.home__contact{
+  color: var(--color-white);
+  font-size:var(--font-regular);
+  font-weight: var(--weight-bold);
+  margin:24px;
+  padding:8px 12px;
+  border:2px solid var(--color-white);
+  border-radius: var(--size-border-radius);
+}
+
+.home__title,.home__description{
+  color:var(--color- white);
+}
+
