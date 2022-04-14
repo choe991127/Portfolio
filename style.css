@@ -375,3 +375,47 @@
   margin-top:8px;
 
 }
+
+/* Testimonial */
+#testimonials{
+  background-color: var(--color-light-white);
+}
+
+.testimonials{
+  margin:40px;
+
+}
+.testimonial{
+  display:flex;
+  margin:32px 0;
+
+}
+.testimonial__avatar{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  margin:12px;
+
+}
+/* 만약 나중에 추천서에 쓸거리가 길어지면 밑에 width:80% 지우면된다. 보기이쁘라고 해놨다. */
+.testimonial__speech-bubble{
+  padding: 18px;
+  width:80%;
+  background-color: var(--color-white);
+  border-radius: var(--size-border-radius);
+  
+}
+.testimonial__avatar:nth-child(odd){
+  margin-right:40px;
+
+}
+.testimonial__avatar:nth-child(even){
+  margin-left:40px;
+
+}
+.testimonial__speech-bubble p{
+  color: var(--color-light-gray);
+}
+.testimonial__speech-bubble a{
+  color:var(--color-purple);
+}
