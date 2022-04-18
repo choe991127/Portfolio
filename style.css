@@ -99,11 +99,15 @@
   
   /* Navbar */
   #navbar{
+    position:fixed;
+    width:100%;
     display:flex;
     justify-content: space-between;
-    background-color:var(--color-verylight-purple);
+    background-color: transparent;
     align-items: center;
     padding:16px;
+    transition: all var(--animation-duration) ease-in-out;
+    z-index:1;
   }
   .navbar__logo{
     font-size: var(--font-medium);
@@ -134,17 +138,25 @@
   
   .navbar__toggle-btn{
     position:absolute;
-    top:24px;
+    top:15px;
     right:32px;
     font-size:24px;
+    
     color:var(--color-white);
     display:none;
+  }
+  #navbar.navbar--dark{
+    background-color:var(--color-verylight-purple);
+    padding:8px;
+    
+
   }
 
 /* Home */
 #home{
   background:url('images/home-background.png') center/cover no-repeat;
   padding:40px;
+  padding-top:120px;
   text-align:center;
 
 }
@@ -456,7 +468,9 @@
   transform:scale(1.2);
   color:var(--color-purple-blue);
 }
+
 /* For below 768px screen width */
+
 @media screen and (max-width:768px){
   .navbar__toggle-btn{
     display:block;
