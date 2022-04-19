@@ -1,4 +1,14 @@
 'use strict';
+
+function scrollIntoView(selector){
+    const scrollContact=document.querySelector(selector);
+    scrollContact.scrollIntoView({behavior:"smooth"});
+};
+
+
+
+
+
 // Make navbar transparent when it is on the top
 const navbar=document.querySelector('#navbar');
 const navbarHeight=navbar.getBoundingClientRect().height;
@@ -28,7 +38,14 @@ HomeContact.addEventListener('click',(event)=>{
     scrollIntoView('#contact');
 });
 
-function scrollIntoView(selector){
-    const scrollContact=document.querySelector(selector);
-    scrollContact.scrollIntoView({behavior:"smooth"});
-}
+//scroll and transparent Home
+const Home=document.querySelector('.home__container');
+const HomeHeight=Home.getBoundingClientRect().height;
+document.addEventListener('scroll',()=>{
+    Home.style.opacity=1-window.scrollY/HomeHeight;
+});
+
+
+
+
+
