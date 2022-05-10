@@ -38,14 +38,26 @@ HomeContact.addEventListener('click',(event)=>{
     scrollIntoView('#contact');
 });
 
+
+
+
 //scroll and transparent Home
 const Home=document.querySelector('.home__container');
 const HomeHeight=Home.getBoundingClientRect().height;
 document.addEventListener('scroll',()=>{
     Home.style.opacity=1-window.scrollY/HomeHeight;
+
 });
 
-
-
-
-
+const arrowUp=document.querySelector('.arrow-up');
+document.addEventListener('scroll',()=>{
+    if(window.scrollY > HomeHeight/2){
+        arrowUp.classList.add('visible');
+    }else{
+        arrowUp.classList.remove('visible');
+    }
+});
+//Handle click on the "arrow up" button
+arrowUp.addEventListener('click',()=>{
+    scrollIntoView('#home');
+})
