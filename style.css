@@ -344,7 +344,14 @@
   display:flex;
   flex-wrap:wrap;
   justify-content: center;
+  opacity:1;
+  transition: all var(--animation-duration) ease-out;
 }
+.work__projects.anim-out{
+  opacity:0;
+  transform: sclae(0.96) translateY(40px);
+}
+
 .project{
   position:relative;
   display:flex;
@@ -355,6 +362,9 @@
   margin:2px;
   background: var(--color-light-white) ;
 
+}
+.project.invisible{
+  display:none;
 }
 .project__img{
   max-width: 100%;
