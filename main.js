@@ -1,9 +1,6 @@
 'use strict';
 
-function scrollIntoView(selector){
-    const scrollContact=document.querySelector(selector);
-    scrollContact.scrollIntoView({behavior:"smooth"});
-};
+
 
 
 
@@ -33,6 +30,7 @@ navbarMenu.addEventListener('click',(event)=>{
     }
     navbarMenu.classList.remove('open');
     scrollIntoView(link);
+    selectedNavItem(target);
 });
 
 //Navbar toggle button for small screen
@@ -66,6 +64,7 @@ document.addEventListener('scroll',()=>{
         arrowUp.classList.remove('visible');
     }
 });
+
 //Handle click on the "arrow up" button
 arrowUp.addEventListener('click',()=>{
     scrollIntoView('#home');
@@ -106,4 +105,59 @@ workBtnContainer.addEventListener('click',(e)=>{
     
 });
 
+// IntersectionObserver
+const sectionIds=[
+    '#home',
+    '#about',
+    '#skills',
+    '#work',
+    '#testimonials',
+    '#contact'
+];
 
+const sections= sectionIds.map(id=>document.querySelector(id));
+const navItems=sectionIds.map(id=>document.querySelector(`[data-link="${id}"]`));
+let selectedNavIndex=0;
+let selectedNavitem=navItems[0];
+function selectedNavItem(selected){
+    selectedNavitem.classList.remove('active');
+    selectedNavitem=selected; 
+    selectedNavitem.classList.add('active');
+}
+function scrollIntoView(selector){
+    const scrollContact=document.querySelector(selector);
+    scrollContact.scrollIntoView({behavior:"smooth"});
+    selectedNavItem(navItems[sectionIds.indexOf(selector)]);
+};
+const observerOptions={
+    root:null,
+    rootMargin:'0px',
+    threshold:0.3,
+}
+const observerCallback=(entries,observer)=>{
+    entries.forEach(entry=>{
+        if(!entry.isIntersecting&&entry.intersectionRatio>0){ 
+            const index=sectionIds.indexOf(`#${entry.target.id}`);
+            //스크롤링이 아래로 되어서 페이지 올라올때
+            if(entry.boundingClientRect.y<0){
+                selectedNavIndex=index+1;
+            }else{
+                selectedNavIndex=index-1;
+            }
+        }
+
+    } );
+}
+const observer=new IntersectionObserver(observerCallback,observerOptions);
+sections.forEach(section=>observer.observe(section));
+
+window.addEventListener('wheel',()=>{
+    if(window.scrollY===0){
+        selectedNavIndex=0;
+    }
+    else if(Math.round(window.scrollY + window.innerHeight) >=
+            document.body.clientHeight){
+        selectedNavIndex=navItems.length-1;
+    }
+    selectedNavItem(navItems[selectedNavIndex]);
+});
